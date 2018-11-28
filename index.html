@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/tablet.css" media="screen and (min-width:600px) and (max-width:900px)">
+  <link rel="stylesheet" href="./css/mobile.css" media="screen and (min-width:320px) and (max-width:600px)">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <title>Video Player</title>
+</head>
+
+<body>
+  <div class="player_container">
+    <div class="video_player-playlist">
+      <div class="playlist_utils">
+        <span class="tooltip2 loop_tip"></span>
+        <span class="tooltip2 autoplay_tip"></span>
+        <span class="tooltip2 shuffle_tip"></span>
+        <input type="checkbox" id="video_looper">
+        <label for="video_looper" class="looper">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 344.37 344.37" style="enable-background:new 0 0 344.37 344.37;" xml:space="preserve">
+            <path d="M334.485,37.463c-6.753-1.449-13.396,2.853-14.842,9.603l-9.084,42.391C281.637,40.117,228.551,9.155,170.368,9.155    c-89.603,0-162.5,72.896-162.5,162.5c0,6.903,5.596,12.5,12.5,12.5c6.903,0,12.5-5.597,12.5-12.5    c0-75.818,61.682-137.5,137.5-137.5c49.429,0,94.515,26.403,118.925,68.443l-41.674-8.931c-6.752-1.447-13.396,2.854-14.841,9.604    c-1.446,6.75,2.854,13.396,9.604,14.842l71.536,15.33c1.215,0.261,2.449,0.336,3.666,0.234c2.027-0.171,4.003-0.836,5.743-1.962    c2.784-1.801,4.738-4.634,5.433-7.875l15.331-71.536C345.535,45.555,341.235,38.911,334.485,37.463z" fill="#FFFFFF"/>
+            <path d="M321.907,155.271c-6.899,0.228-12.309,6.006-12.081,12.905c1.212,36.708-11.942,71.689-37.042,98.504    c-25.099,26.812-59.137,42.248-95.844,43.46c-1.53,0.05-3.052,0.075-4.576,0.075c-47.896-0.002-92.018-24.877-116.936-65.18    l43.447,11.65c6.668,1.787,13.523-2.168,15.311-8.837c1.788-6.668-2.168-13.522-8.836-15.312l-70.664-18.946    c-3.202-0.857-6.615-0.409-9.485,1.247c-2.872,1.656-4.967,4.387-5.826,7.589L0.43,293.092    c-1.788,6.668,2.168,13.522,8.836,15.311c1.085,0.291,2.173,0.431,3.245,0.431c5.518,0,10.569-3.684,12.066-9.267l10.649-39.717    c29.624,46.647,81.189,75.367,137.132,75.365c1.797,0,3.604-0.029,5.408-0.089c43.381-1.434,83.608-19.674,113.271-51.362    s45.209-73.031,43.776-116.413C334.586,160.453,328.805,155.026,321.907,155.271z" fill="#FFFFFF"/>
+          </svg>
+        </label>
+        <input type="checkbox" id="playlist_autoplay">
+        <label for="playlist_autoplay" class="autoplay"></label>
+        <input type="checkbox" id="playlist_shuffler">
+        <label for="playlist_shuffler" class="shuffler">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+            <path fill="#EAF0F1" d="M12 11h-1.586l-2.5-2.5 2.5-2.5h1.586v2.5l3.5-3.5-3.5-3.5v2.5h-2c-0.265 0-0.52 0.105-0.707 0.293l-2.793 2.793-2.793-2.793c-0.188-0.188-0.442-0.293-0.707-0.293h-3v2h2.586l2.5 2.5-2.5 2.5h-2.586v2h3c0.265 0 0.52-0.105 0.707-0.293l2.793-2.793 2.793 2.793c0.188 0.188 0.442 0.293 0.707 0.293h2v2.5l3.5-3.5-3.5-3.5v2.5z"></path>
+          </svg>
+        </label>
+      </div>
+      <ul></ul>
+    </div>
+    <div id="video_player-wrapper" tabindex="0">
+      <div class="main_video-player">
+        <div class="video_content">
+          <span class="flash forward5">
+            <span>
+              <h2>5</h2>
+              <svg class="spinner_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                <path fill="#EAF0F1" d="M16 6h-6l2.243-2.243c-1.133-1.133-2.64-1.757-4.243-1.757s-3.109 0.624-4.243 1.757c-1.133 1.133-1.757 2.64-1.757 4.243s0.624 3.109 1.757 4.243c1.133 1.133 2.64 1.757 4.243 1.757s3.109-0.624 4.243-1.757c0.095-0.095 0.185-0.192 0.273-0.292l1.505 1.317c-1.466 1.674-3.62 2.732-6.020 2.732-4.418 0-8-3.582-8-8s3.582-8 8-8c2.209 0 4.209 0.896 5.656 2.344l2.343-2.344v6z"></path>
+              </svg>
+              <svg  class="undo_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;" xml:space="preserve">
+              	<path d="M421.125,134.191c-11.608-27.03-27.217-50.347-46.819-69.949C354.7,44.639,331.384,29.033,304.353,17.42   C277.325,5.807,248.969,0.005,219.275,0.005c-27.978,0-55.052,5.277-81.227,15.843C111.879,26.412,88.61,41.305,68.243,60.531   l-37.12-36.835c-5.711-5.901-12.275-7.232-19.701-3.999C3.807,22.937,0,28.554,0,36.547v127.907c0,4.948,1.809,9.231,5.426,12.847   c3.619,3.617,7.902,5.426,12.85,5.426h127.907c7.996,0,13.61-3.807,16.846-11.421c3.234-7.423,1.903-13.988-3.999-19.701   l-39.115-39.398c13.328-12.563,28.553-22.222,45.683-28.98c17.131-6.757,35.021-10.138,53.675-10.138   c19.793,0,38.687,3.858,56.674,11.563c17.99,7.71,33.544,18.131,46.679,31.265c13.134,13.131,23.555,28.69,31.265,46.679   c7.703,17.987,11.56,36.875,11.56,56.674c0,19.798-3.856,38.686-11.56,56.672c-7.71,17.987-18.131,33.544-31.265,46.679   c-13.135,13.134-28.695,23.558-46.679,31.265c-17.987,7.707-36.881,11.561-56.674,11.561c-22.651,0-44.064-4.949-64.241-14.843   c-20.174-9.894-37.209-23.883-51.104-41.973c-1.331-1.902-3.521-3.046-6.567-3.429c-2.856,0-5.236,0.855-7.139,2.566   l-39.114,39.402c-1.521,1.53-2.33,3.478-2.426,5.853c-0.094,2.385,0.527,4.524,1.858,6.427   c20.749,25.125,45.871,44.587,75.373,58.382c29.502,13.798,60.625,20.701,93.362,20.701c29.694,0,58.05-5.808,85.078-17.416   c27.031-11.607,50.34-27.22,69.949-46.821c19.605-19.609,35.211-42.921,46.822-69.949s17.411-55.392,17.411-85.08   C438.536,189.569,432.732,161.22,421.125,134.191z" fill="#FFFFFF"/>
+              </svg>
+            </span>
+          </span>
+          <span class="flash flash_icon">
+            <svg class="play_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+              <path fill="#EAF0F1" d="M3 2l10 6-10 6z"></path>
+            </svg>
+          </span>
+          <span class="flash flash_icon">
+            <svg class="pause_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+              <path fill="#EAF0F1" d="M2 2h5v12h-5zM9 2h5v12h-5z"></path>
+            </svg>
+          </span>
+          <video id="main_video" src="./videos/Web_Design_2018.mp4" title="Video Player Updated Version">
+	    <source src="./videos/Web_Design_2018.mp4" type="video/mp4">
+	    <source src="./videos/ft._Harrys_App.mp4" type="video/mp4">
+            <!--<source src="./videos/Mark_Helping_Others.mp4" type="video/mp4">
+            <source src="./videos/What_Is_Binary_0s_And_1s.mp4" type="video/mp4">
+	    <source src="./videos/How_Image_Is_Stored.mp4" type="video/mp4">
+	    <source src="./videos/Hour_Of_Code_Loops.mp4" type="video/mp4">
+            <source src="./videos/Ae_Zindagi.mp4" type="video/mp4">
+    	    <source src="./videos/Mark_Steve_About_Programming.mp4" type="video/mp4">               
+            <source src="./videos/Fears_Motivation.mp4" type="video/mp4">
+            <source src="./videos/Khusiyon_Ka_Ghar.mkv" type="video/mp4">-->
+          </video>
+          <span class="tooltip duration_tip"></span>
+          <span class="tooltip volume_tip"></span>
+          <span class="tooltip play_tip">Play</span>
+          <span class="tooltip pause_tip">Pause</span>
+          <span class="tooltip forward_tip">Forward</span>
+          <span class="tooltip backward_tip">Rewind</span>
+          <span class="tooltip next_tip">Next</span>
+          <span class="tooltip previous_tip">Previous</span>
+          <span class="tooltip mute_tip">Mute</span>
+          <span class="tooltip unmute_tip">Unmute</span>
+          <span class="tooltip settings_tip">Settings</span>
+          <span class="tooltip download_tip">Download</span>
+          <span class="tooltip fullscreen_tip">Fullscreen</span>
+        </div>
+        <div class="video_controllers">
+          <div class="progress_bar-wrapper">
+            <span class="duration_done">00:00</span>
+            <span class="duration_remain">00:00</span>
+            <div class="progress_bar"></div>
+            <input type="range" min="0" max="200" value="0" class="slider">
+          </div>
+          <div class="media_buttons">
+            <div class="volume_controllers">
+              <div class="volume_icon">
+                <svg class="vol_off" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M15 9.674v1.326h-1.326l-1.674-1.674-1.674 1.674h-1.326v-1.326l1.674-1.674-1.674-1.674v-1.326h1.326l1.674 1.674 1.674-1.674h1.326v1.326l-1.674 1.674 1.674 1.674z"></path>
+                  <path fill="#EAF0F1" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+                </svg>
+                <svg class="vol_level-1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M8.578 11.578c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 1.267-1.267 1.267-3.329 0-4.596-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.852 1.852 1.852 4.865 0 6.718-0.146 0.146-0.338 0.22-0.53 0.22z"></path>
+                  <path fill="#EAF0F1" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+                </svg>
+                <svg class="vol_level-2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M11.243 12.993c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 2.047-2.047 2.047-5.378 0-7.425-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.275 1.275 1.977 2.97 1.977 4.773s-0.702 3.498-1.977 4.773c-0.146 0.146-0.338 0.22-0.53 0.22v0zM8.578 11.578c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 1.267-1.267 1.267-3.329 0-4.596-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.852 1.852 1.852 4.865 0 6.718-0.146 0.146-0.338 0.22-0.53 0.22z"></path>
+                  <path fill="#EAF0F1" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+                </svg>
+                <svg class="vol_max" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M13.907 14.407c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 1.369-1.369 2.123-3.19 2.123-5.127s-0.754-3.757-2.123-5.127c-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.653 1.653 2.563 3.85 2.563 6.187s-0.91 4.534-2.563 6.187c-0.146 0.146-0.338 0.22-0.53 0.22zM11.243 12.993c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 2.047-2.047 2.047-5.378 0-7.425-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.275 1.275 1.977 2.97 1.977 4.773s-0.702 3.498-1.977 4.773c-0.146 0.146-0.338 0.22-0.53 0.22v0zM8.578 11.578c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 1.267-1.267 1.267-3.329 0-4.596-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.852 1.852 1.852 4.865 0 6.718-0.146 0.146-0.338 0.22-0.53 0.22z"></path>
+                  <path fill="#EAF0F1" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+                </svg>
+              </div>
+              <div class="volume_wrapper">
+                <div class="volume_bar_wrapper">
+                  <div class="volume_bar"></div>
+                  <input type="range" min="0" max="100" value="50" class="volume_slider">
+                </div>
+              </div>
+            </div>
+            <div class="video_buttons">
+              <div class="previous_video">
+                <svg class="previous_track_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M4 14v-12h2v5.5l5-5v11l-5-5v5.5z"></path>
+                </svg>
+              </div>
+              <div class="fast_backward">
+                <svg class="fast_backward_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M9 2.5v5l5-5v11l-5-5v5l-5.5-5.5z"></path>
+                </svg>
+
+              </div>
+              <div class="play_pause">
+                <svg class="play_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M3 2l10 6-10 6z"></path>
+                </svg>
+                <svg class="pause_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M2 2h5v12h-5zM9 2h5v12h-5z"></path>
+                </svg>
+              </div>
+              <div class="fast_forward">
+                <svg class="fast_forward_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M8 13.5v-5l-5 5v-11l5 5v-5l5.5 5.5z"></path>
+                </svg>
+
+              </div>
+              <div class="next_video">
+                <svg class="next_track_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M12 2v12h-2v-5.5l-5 5v-11l5 5v-5.5z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="video_utils">
+              <div class="video_settings">
+                <svg class="cog_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M14.59 9.535c-0.839-1.454-0.335-3.317 1.127-4.164l-1.572-2.723c-0.449 0.263-0.972 0.414-1.529 0.414-1.68 0-3.042-1.371-3.042-3.062h-3.145c0.004 0.522-0.126 1.051-0.406 1.535-0.839 1.454-2.706 1.948-4.17 1.106l-1.572 2.723c0.453 0.257 0.845 0.634 1.123 1.117 0.838 1.452 0.336 3.311-1.12 4.16l1.572 2.723c0.448-0.261 0.967-0.41 1.522-0.41 1.675 0 3.033 1.362 3.042 3.046h3.145c-0.001-0.517 0.129-1.040 0.406-1.519 0.838-1.452 2.7-1.947 4.163-1.11l1.572-2.723c-0.45-0.257-0.839-0.633-1.116-1.113zM8 11.24c-1.789 0-3.24-1.45-3.24-3.24s1.45-3.24 3.24-3.24c1.789 0 3.24 1.45 3.24 3.24s-1.45 3.24-3.24 3.24z"></path>
+                </svg>
+              </div>
+              <div class="video_download">
+                <svg class="download_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M11.5 7l-4 4-4-4h2.5v-6h3v6zM7.5 11h-7.5v4h15v-4h-7.5zM14 13h-2v-1h2v1z"></path>
+                </svg>
+              </div>
+              <div class="video_fullscreen">
+                <svg class="fullscreen_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 16 16">
+                  <path fill="#EAF0F1" d="M0 1v10h16v-10h-16zM15 10h-14v-8h14v8zM10.5 12h-5l-0.5 2-1 1h8l-1-1z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/script.js"></script>
+<script src="./js/playlist.js"></script>
+
+</html>

@@ -1,0 +1,601 @@
+*, html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+}
+
+svg {
+  width: 50%;
+}
+
+.player_container {
+  height: 100Vh;
+  width: 100%;
+}
+
+.player_container::after {
+  clear: both;
+}
+
+#video_player-wrapper {
+  position: relative;
+  height: 100%;
+  width: 78%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4C4B4B;
+  float: left;
+  outline: none;
+}
+
+#video_player-wrapper div {
+  float: left;
+}
+
+.main_video-player {
+  background-color: rgba(40, 40, 40, 1);
+  width: 71.9%;
+  height: 80%;
+}
+
+.video_content {
+  position: relative;
+  width: 100%;
+  height: 86%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video_content > span.flash{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.video_content > span.flash > span {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video_content > span.flash > span h2 {
+  position: absolute;
+  top: 0px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 2rem;
+}
+
+.video_content > span.flash > span svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.video_content > span.flash svg {
+  width: 100%;
+  height: 100%;
+}
+
+.video_content video {
+  width: 100%;
+  height: 100%;
+}
+
+.video_content span.tooltip {
+  position: absolute;
+  border-radius: 2px;
+  padding: 5px;
+  width: auto;
+  height: 25px;
+  bottom: 5px;
+  border-top: 2px solid #FF3031;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-family: sans-serif;
+  z-index: 1;
+}
+
+.tooltip.duration_tip {
+  width: 60px !important;
+}
+
+/* video buttons */
+
+.video_controllers {
+  position: relative;
+  width: 100%;
+  height: 14%;
+  background-color: #2C3335;
+}
+
+/* Video Progress bar */
+
+.progress_bar-wrapper {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background-color: #DAE0E2;
+}
+
+.progress_bar-wrapper span{
+  position: absolute;
+  transform: translateY(-110%);
+  width: 70px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 900;
+  color: white;
+  background-color: rgba(40, 40, 40, 1)
+}
+
+.progress_bar-wrapper .duration_done {
+  left: 2px;
+}
+
+.progress_bar-wrapper .duration_remain {
+  right: 5px;
+}
+
+.progress_bar {
+  cursor: pointer;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  left: 0px;
+  background-color: #FF3031;
+}
+
+.slider {
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  height: 2px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0px 0px 15px blue;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: .3s;
+}
+
+.slider:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-image: linear-gradient(blue, red);
+    cursor: pointer;
+}
+
+/* media buttons */
+
+.media_buttons {
+  width: 100%;
+  height: calc(100% - 3px);
+}
+
+.media_buttons::after {
+  content: "";
+  display: block;
+  clear:both;
+}
+
+.media_buttons > div {
+  float: left;
+  height: 100%;
+}
+
+/* volume controllers */
+
+.media_buttons .volume_controllers {
+  width: 30%;
+}
+
+.media_buttons .volume_controllers::after {
+  content:"";
+  display: block;
+  clear: both;
+}
+
+.media_buttons .volume_controllers div {
+  float: left;
+}
+
+.media_buttons .volume_controllers .volume_icon::after {
+  content:"";
+  display: block;
+  clear: both;
+}
+
+.media_buttons .volume_controllers .volume_icon {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.media_buttons .volume_controllers .volume_wrapper {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.media_buttons .volume_wrapper .volume_bar_wrapper {
+  width: 70%;
+  height: 2px;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #DAE0E2;
+}
+
+.volume_bar {
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #FF3031;
+}
+
+.volume_slider {
+  -webkit-appearance: none;
+  position: absolute;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0px 0px 15px blue;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  opacity: 0;
+  transition: .3s;
+}
+
+.volume_slider:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.volume_slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-image: linear-gradient(blue, red);
+  cursor: pointer;
+}
+
+.media_buttons .video_buttons {
+  width: 40%;
+}
+
+.media_buttons .video_buttons::after {
+  content:"";
+  display: block;
+  clear: both;
+}
+
+.media_buttons .video_buttons div {
+  float: left;
+  height: 100%;
+  width: 20%;
+}
+
+.media_buttons div div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media_buttons div div svg {
+  cursor: pointer;
+}
+
+.media_buttons .video_buttons div svg:active {
+  transform: scale(.9, .9);
+}
+
+.media_buttons .video_utils {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 25px;
+  width: 30%;
+}
+
+.media_buttons .video_utils::after {
+  content:"";
+  display: block;
+  clear: both;
+}
+
+.media_buttons .video_utils div {
+  float: left;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.media_buttons .video_utils div svg:active{
+  transform: scale(0.9, 0.9);
+}
+
+.media_buttons .video_utils div svg.cog_icon:active{
+  transform: rotateZ(50deg);
+  transition: .3s;
+}
+
+.media_buttons .video_utils div {
+  width: 20%;
+}
+
+.video_player-playlist {
+  width: 22%;
+  height: 100%;
+  background-color: #2C3335;
+  float: left;
+}
+
+.video_player-playlist .playlist_utils{
+  position: relative;
+  width: 100%;
+  height: 10%;
+  padding-right: 10%;
+  background-color: rgba(40, 40, 40, .5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.video_player-playlist .playlist_utils span.tooltip2 {
+  position: absolute;
+  display: inline-block;
+  background-color: #eee;
+  width: auto;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  padding: 5px;
+  height: auto;
+  bottom: -40%;
+  border-radius: 3px;
+  border-bottom: 2px solid #FF3031;
+}
+
+.video_player-playlist .playlist_utils label{
+  margin: auto 5%;
+}
+
+.video_player-playlist .playlist_utils .shuffler svg{
+  width: 40px;
+  cursor: pointer;
+}
+
+.video_player-playlist .playlist_utils .looper svg{
+  height: 22px;
+  width: 45px;
+  cursor: pointer;
+}
+
+.video_player-playlist .playlist_utils svg:active{
+  transform: scale(.9, .9);
+}
+
+.video_player-playlist .playlist_utils input{
+  position: absolute;
+  display: none;
+}
+
+.video_player-playlist .playlist_utils label.autoplay{
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 18px;
+  background-color: #2C3335;
+  box-shadow: inset 1px 1px 8px black;
+  border-radius: 10px;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.video_player-playlist .playlist_utils label.autoplay::before{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 44%;
+  border-radius: 50%;
+  background-color: #eee;
+  transition: .5s;
+}
+
+
+.video_player-playlist .playlist_utils input#playlist_autoplay:checked ~ label.autoplay {
+  background-color: #FF3031;
+}
+
+.video_player-playlist .playlist_utils input#playlist_autoplay:checked ~ label.autoplay::before {
+  left: 56%;
+}
+
+
+.video_player-playlist ul{
+  margin: 0px;
+  padding: 0px;
+  padding-top: 2.5rem;
+  width: 100%;
+  height: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.video_player-playlist ul::-webkit-scrollbar{
+    width: 3px;
+    transition: .2s;
+}
+
+.video_player-playlist:hover ul::-webkit-scrollbar{
+    width: 5px;
+}
+
+.video_player-playlist ul::-webkit-scrollbar-thumb {
+    background:#FF3031;
+    height:150px;
+}
+.video_player-playlist ul::-webkit-scrollbar-track {
+    background:#2C3335;
+}
+.video_player-playlist ul::-webkit-scrollbar-button{
+  height: 100%;
+}
+
+.video_player-playlist ul li{
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+  transition: .2s;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.video_player-playlist ul li span.selected{
+  content:"";
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  width: 3px;
+  height: 100%;
+  background-color: #FF3031;
+}
+
+.video_player-playlist ul li:hover {
+  background-color: silver;
+  color: #666;
+}
+
+.list_item::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.list_item .list_item-index {
+  float: left;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 2rem;
+  font-family: sans-serif;
+  padding-top: 2rem;
+  width: 15%
+}
+
+.list_item .list_item-details {
+  float: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  padding-left: 10px;
+}
+
+.list_item .list_item-details h3 {
+  font-size: 1.7rem;
+  font-weight: 400;
+  font-family: sans-serif;
+  letter-spacing: 1.5px;
+  margin: 0px;
+  padding: 0px;
+  margin-top: .3rem;
+}
+
+.list_item .list_item-details p {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+}
+
+/* .video_player-playlist ul li::before{
+  content: "1";
+  display: block;
+  color: white;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 0%;
+  height: 100%;
+  transition: 1s;
+  background-color: #FF3031;
+} */
+/*
+.video_player-playlist ul li:hover::before{
+
+} */
